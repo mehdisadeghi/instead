@@ -24,7 +24,8 @@ $(OBJ): %.o : %.c $(H)
 	$(CC) -c $(<) $(I) $(CFLAGS) $(CPPFLAGS) -o $(@)
 
 sdl-instead$(EXE):  $(OBJ) $(RESOURCES)
-	$(CC) $(CFLAGS) $(^) $(LDFLAGS) -o $(@) 
+	#$(CC) $(CFLAGS) $(^) $(LDFLAGS) -o $(@)
+	$(AR) rcs $(@) $(^)
 
 install:
 	$(INSTALLD) $(DESTDIR)$(BIN)
