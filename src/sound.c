@@ -121,7 +121,8 @@ static int _snd_open(int hz)
 	if (audio_buffers <= 0) /* wrong parameter? */
 		audio_buffers = DEFAULT_CHUNKSIZE;
 #ifdef __EMSCRIPTEN__
-	if (Mix_OpenAudioDevice(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096, NULL, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE)) {
+//	if (Mix_OpenAudioDevice(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096, NULL, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE)) {
+		if (Mix_OpenAudio(hz, audio_format, audio_channels, audio_buffers)) {
 #else
 	if (Mix_OpenAudio(hz, audio_format, audio_channels, audio_buffers)) {
 #endif
