@@ -190,9 +190,9 @@ int AG_ConvertSurfacesToDisplayFormat( AG_Frame* frames, int nFrames )
 				if (SDL_GetColorKey(frames[i].surface, NULL) == 0)
 					surface = SDL_DisplayFormatAlpha(frames[i].surface);
 				else
-					surface = SDL_DisplayFormat(frames[i].surface);
+					surface = SDL_DisplayFormatAlpha(frames[i].surface);
 #else
-				SDL_Surface* surface = (frames[i].surface->flags & SDL_SRCCOLORKEY) ? SDL_DisplayFormatAlpha(frames[i].surface) : SDL_DisplayFormat(frames[i].surface);
+				SDL_Surface* surface = (frames[i].surface->flags & SDL_SRCCOLORKEY) ? SDL_DisplayFormatAlpha(frames[i].surface) : SDL_DisplayFormatAlpha(frames[i].surface);
 #endif
 				if ( surface )
 				{
@@ -222,11 +222,11 @@ int AG_NormalizeSurfacesToDisplayFormat( AG_Frame* frames, int nFrames )
 			mainSurface = SDL_DisplayFormatAlpha(frames[0].surface);
 			newDispose = AG_DISPOSE_RESTORE_BACKGROUND;
 		} else {
-			mainSurface = SDL_DisplayFormat(frames[0].surface);
+			mainSurface = SDL_DisplayFormatAlpha(frames[0].surface);
 			newDispose = AG_DISPOSE_NONE;
 		}
 #else
-		SDL_Surface* mainSurface = (frames[0].surface->flags & SDL_SRCCOLORKEY) ? SDL_DisplayFormatAlpha(frames[0].surface) : SDL_DisplayFormat(frames[0].surface);
+		SDL_Surface* mainSurface = (frames[0].surface->flags & SDL_SRCCOLORKEY) ? SDL_DisplayFormatAlpha(frames[0].surface) : SDL_DisplayFormatAlpha(frames[0].surface);
 		const int newDispose = (frames[0].surface->flags & SDL_SRCCOLORKEY) ? AG_DISPOSE_RESTORE_BACKGROUND : AG_DISPOSE_NONE;
 #endif
 		if ( mainSurface )
